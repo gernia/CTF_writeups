@@ -1,15 +1,21 @@
+# Simple CTF
+
+Writeup not finished
+
+The used IP addresses change, because I re-deployed the target machine several times.
+
 **Nmap Scan**
 
 - scanning for ports in general 
 
-![[Pasted image 20250706223739.png]]
+![Pasted image 20250706223739.png](https://github.com/gernia/CTF_writeups/blob/main/Simple%20CTF/imgs/Pasted%20image%2020250706223739.png)
 
 
 EtherNetIP-1 is on port 2222, that's above port 1000, so there are 2 services running below port 1000.
 How many services are running under port 1000? - 2
 
 Doing the portscan again, we get
-![[Pasted image 20250706231210.png]]
+![Pasted image 20250706231210.png](https://github.com/gernia/CTF_writeups/blob/main/Simple%20CTF/imgs/Pasted%20image%2020250706231210.png)
 
 we can answer "What is running on the higher port" with ssh
 
@@ -19,27 +25,20 @@ we can answer "What is running on the higher port" with ssh
 - found a lot, found http://10.10.129.58/simple/ 
 - we also find http://10.10.129.58/simple/admin/login.php
 
-**Website
-
-- Website hat search bar
-- we want to test it for sgli by entering ' OR '1'='1
-- ![[Pasted image 20250707000421.png]]
-- when we click on the link, we see some default templates explained and also a post that has been published by someone named mitch
-
 **Hydra Password Bruteforce with username mitch**
 
 `sudo hydra -l mitch -P /usr/share/wordlists/rockyou.txt 10.10.91.200 http-post-form "/simple/admin/login.php:username=^USER^&password=^PASS^&loginsubmit=Submit:F=incorrect" -V`
 
 
-![[Pasted image 20250708215042.png]]
+![Pasted image 20250708215042.png](https://github.com/gernia/CTF_writeups/blob/main/Simple%20CTF/imgs/Pasted%20image%2020250708215042.png)
 
 **FTP Server**
 - you can login to the ftp server without credentials
 
-![[Pasted image 20250708221613.png]]
+![Pasted image 20250708221613.png](https://github.com/gernia/CTF_writeups/blob/main/Simple%20CTF/imgs/Pasted%20image%2020250708221613.png)
 
 The file says:
-![[Pasted image 20250708221812.png]]
+![Pasted image 20250708221812.png](https://github.com/gernia/CTF_writeups/blob/main/Simple%20CTF/imgs/Pasted%20image%2020250708221812.png)
 Dammit man... you'te the worst dev i've seen. You set the same pass for the system user, and the password is so weak... i cracked it in seconds. Gosh... what a mess!
 
 **SSH**
@@ -51,9 +50,9 @@ Dammit man... you'te the worst dev i've seen. You set the same pass for the syst
 **privilege escalation**
 - see what the user can run with sudo `sudo -l`
 - user can run vim with sudo
-- ![[Pasted image 20250708224438.png]]
+- ![Pasted image 20250708224438.png](https://github.com/gernia/CTF_writeups/blob/main/Simple%20CTF/imgs/Pasted%20image%2020250708224438.png)
 - start vim
 	- `sudo vim`
 - then escape to shell from vim by typing  `:!sh` in vim 
-- ![[Pasted image 20250708224625.png]]
+- ![Pasted image 20250708224625.png](https://github.com/gernia/CTF_writeups/blob/main/Simple%20CTF/imgs/Pasted%20image%2020250708224625.png)
 - navigate to folder named root, in root.txt is the flag W3ll d0n3. You made it!
