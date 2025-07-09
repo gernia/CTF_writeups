@@ -45,7 +45,7 @@ Dammit man... you'te the worst dev i've seen. You set the same pass for the syst
 - the ssh doesn't react when we try to log in
 - with `ssh -vvv mitch@10.10.1.91` we see why: it tries to connect to port 22, but the ssh is running on port 2222
 - log in with `ssh -p 2222 mitch@10.10.1.91`
-- the user.txt file has the flag `G00d j0b, keep up!`
+- the user.txt file has the flag
 
 ## Step 5: Privilege Escalation
 - see what the user can run with sudo `sudo -l`
@@ -55,7 +55,7 @@ Dammit man... you'te the worst dev i've seen. You set the same pass for the syst
 	- `sudo vim`
 - then escape to shell from vim by typing  `:!sh` in vim 
 - ![Pasted image 20250708224625.png](https://github.com/gernia/CTF_writeups/blob/main/Simple%20CTF/imgs/Pasted%20image%2020250708224625.png)
-- navigate to folder named root, in `root.txt` is the flag `W3ll d0n3. You made it!`
+- navigate to folder named root, in `root.txt` is the flag 
 
 ## Step 5: Remaining Questions
 - there are still two remaining questions
