@@ -33,7 +33,7 @@ The used IP addresses change, because I re-deployed the target machine several t
 
 ![Pasted image 20250708215042.png](https://github.com/gernia/CTF_writeups/blob/main/Simple%20CTF/imgs/Pasted%20image%2020250708215042.png)
 
-## Step 3: FTP Server
+## Step 4: FTP Server
 - you can login to the ftp server without credentials
 - on the ftp server is a directory called pub, which contains a file called `ForMitch.txt`
 
@@ -41,13 +41,13 @@ The file says:
 ![Pasted image 20250708221812.png](https://github.com/gernia/CTF_writeups/blob/main/Simple%20CTF/imgs/Pasted%20image%2020250708221812.png)
 Dammit man... you'te the worst dev i've seen. You set the same pass for the system user, and the password is so weak... i cracked it in seconds. Gosh... what a mess!
 
-## Step 4: SSH
+## Step 5: SSH
 - the ssh doesn't react when we try to log in
 - with `ssh -vvv mitch@10.10.1.91` we see why: it tries to connect to port 22, but the ssh is running on port 2222
 - log in with `ssh -p 2222 mitch@10.10.1.91`
 - the user.txt file has the flag
 
-## Step 5: Privilege Escalation
+## Step 6: Privilege Escalation
 - see what the user can run with sudo `sudo -l`
 - user can run vim with sudo
 - ![Pasted image 20250708224438.png](https://github.com/gernia/CTF_writeups/blob/main/Simple%20CTF/imgs/Pasted%20image%2020250708224438.png)
@@ -57,7 +57,7 @@ Dammit man... you'te the worst dev i've seen. You set the same pass for the syst
 - ![Pasted image 20250708224625.png](https://github.com/gernia/CTF_writeups/blob/main/Simple%20CTF/imgs/Pasted%20image%2020250708224625.png)
 - navigate to folder named root, in `root.txt` is the flag 
 
-## Step 5: Remaining Questions
+## Step 7: Remaining Questions
 - there are still two remaining questions
 - **What's the CVE you're using against the application?**
 - **To what kind of vulnerability is the application vulnerable?**
