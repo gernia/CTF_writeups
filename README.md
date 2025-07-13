@@ -1,2 +1,2 @@
 # CTF_writeups
-Writeups for TryHackMe boxes that I've done.
+Writeups for TryHackMe rooms that I've done.
